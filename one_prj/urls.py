@@ -20,4 +20,5 @@ import one_app.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', one_app.views.main, name='main'),
+    path('write/', one_app.views.write, name='write'),
 ]
