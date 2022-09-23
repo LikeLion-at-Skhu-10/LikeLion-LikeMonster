@@ -1,10 +1,49 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>One-Project</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <title>One-Project</title>    
 </head>
 <body>
-    
+    <div class="header">
+        <div class="style0">Python Weekly</div>
+        <div class="style1">Welcome to issue 568 of Python Weekly. Let's get straight to the links this week</div>
+    </div>
+    <div class="container">
+        <div class="content">
+            <div class="style5">Interesting Projects, Tools and Libraries</div>
+            <div class="style6">
+                <p class="style7">Whisper</p>
+                <p class="style8">- Whisper is a general-purpose speech recognition model by OpenAI. It is trained on a large dataset of diverse audio and is also a multi-task model that can perform multilingual speech recognition as well as speech translation and language identification.</p>
+                <p class="style7">redframes</p>
+                <p class="style8">- A data manipulation library for ML and visualization. It is fully interoperable with pandas, compatible with scikit-learn, and works great with matplotlib!</p>
+                <p class="style7">RESP</p>
+                <p class="style8">- Fetch Academic Research Papers from different sources including Google Scholar, ACL, ACM, PMLR etc based on keywords or title.</p>
+                <p class="style7">huak</p>
+                <p class="style8">- A Python package manager written in Rust inspired by Cargo.</p>
+            </div>
+        </div>
+        <div class="sidebar">
+            <p class="style9">- Github -</p>
+            <p><a href="https://github.com/openai/whisper">Whisper</a></p>
+            <p><a href="https://github.com/maxhumber/redframes">redframes</a></p>
+            <p><a href="https://github.com/monk1337/resp">RESP</a></p>
+            <p><a href="https://github.com/cnpryer/huak">huak</a></p>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="style2">Python Weekly</div>
+        <div class="style3">Copyright &copy; 2022 Python Weekly, All rights reserved.</div>
+        <div class="style4">
+            <p>Our mailing address is:</p>
+            <p>Python Weekly</p>
+            <p>Brooklyn</p>
+            <p>Brooklyn, NY 11209</p>
+            <p>You can update Your preferences or unsubscribe from this list.</p>
+        </div>
+    </div>
 </body>
 </html>

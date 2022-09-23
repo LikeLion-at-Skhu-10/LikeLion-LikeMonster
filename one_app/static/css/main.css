@@ -1,0 +1,104 @@
+html,
+body {
+    margin: 0;
+}
+
+.header {
+    height: 500px;
+    background-color: rgb(216, 216, 216);
+}
+
+.container {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 10px;
+}
+
+.content {
+    width: 70%;
+    height: 500px;
+    background: peachpuff;
+}
+
+.sidebar {
+    width: 30%;
+    height: 220px;
+    position: sticky;
+    top: 0;
+    background: salmon;
+    text-align: center;
+}
+
+.footer {
+    background: #999;
+    height: 500px;
+}
+
+.style0 {
+    margin-top: 0%;
+    font-size: 50px;
+    font-weight: bolder;
+    text-align: center;
+    padding-top: 180px;
+    color: rgb(0, 72, 0);
+}
+
+.style1 {
+    text-align: center;
+    padding-top: 40px;
+    font-size: 18px;
+    font-weight: lighter;
+}
+
+.style2 {
+    margin-top: 0%;
+    font-size: 50px;
+    font-weight: bolder;
+    text-align: center;
+    padding-top: 50px;
+    color: rgb(71, 71, 71);
+}
+
+.style3 {
+    text-align: center;
+    padding-top: 40px;
+    font-size: 18px;
+    font-weight: lighter;
+    font-style: italic;
+}
+
+.style4 {
+    font-size: 15px;
+    padding-top: 60px;
+    font-weight: lighter;
+    text-align: center;
+}
+
+.style5 {
+    color: rgb(170, 84, 84);
+    font-weight: 500;
+    font-size: 20px;
+    padding-left: 8px;
+    padding-top: 8px;
+    font-weight: bolder;
+}
+
+.style6 {
+    padding-top: 30px;
+}
+
+.style7 {
+    color: rgb(33, 33, 176);
+    padding-left: 10px;
+    font-weight: bolder;
+}
+
+.style8 {
+    padding-left: 12px;
+    text-align: justify;
+}
+
+.style9 {
+    font-size: 20px;
+    font-weight: bolder;
+}
