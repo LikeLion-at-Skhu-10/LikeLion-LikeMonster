@@ -1,0 +1,9 @@
+<h1>read</h1>
+
+{% for read_form in read_forms %}
+    <a href="{% url 'detail' read_form.id %}">{{read_form.title}}</a>
+    {% if read_form.image %}
+        <img src="{{read_form.image.url}}">
+    {% endif %}
+    <hr>
+{% endfor %}

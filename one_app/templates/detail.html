@@ -1,0 +1,8 @@
+<h1>detail</h1>
+
+<p>제목 : {{detail_form.title}}</p>
+<p>작성 : {{detail_form.created_at}}, 수정 : {{detail_form.updated_at}}</p>
+<p>내용 : {{detail_form.content}}</p>
+{% if detail_form.image %}
+    <img src="{{detail_form.image.url}}">
+{% endif %}
