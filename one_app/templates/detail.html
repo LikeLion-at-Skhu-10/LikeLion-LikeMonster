@@ -1,4 +1,6 @@
-<h1>detail 🖤</h1>
+<p><a href="{% url 'main' %}">메인</a></p>
+
+<h1>detail</h1>
 
 <p>제목 : {{post.title}}</p>
 <p>작성 : {{post.created_at}}, 수정 : {{post.updated_at}}</p>
@@ -9,3 +11,4 @@
 <br>
 <a href="{% url 'edit' post.id %}">수정</a>
 <a href="{% url 'delete' post.id %}">삭제</a> 
+

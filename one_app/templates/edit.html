@@ -1,6 +1,10 @@
+<p><a href="{% url 'main' %}">메인</a></p>
+
+<h1>edit</h1>
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <img src="{{url}}" width="200px" height="200px">
     {{ edit_form.as_p }}
-    <input type="submit" value="작성완료">
+    <input type="submit" value="submit">
+</form>
 </form>

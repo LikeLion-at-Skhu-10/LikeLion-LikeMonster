@@ -1,7 +1,9 @@
+<p><a href="{% url 'main' %}">메인</a></p>
+
 <h1>read</h1>
 
 {% for read_form in read_forms %}
-    <a href="{% url 'detail' read_form.id %}">{{read_form.title}}</a>
+    <a href="{% url 'detail' read_form.id %}">{{read_form.title}}</a><br>
     {% if read_form.image %}
         <img src="{{read_form.image.url}}" width = "100px" height="100px">
     {% endif %}
