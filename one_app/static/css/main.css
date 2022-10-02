@@ -4,6 +4,7 @@ body {
 }
 
 .header {
+    margin-top: -4em;
     height: 500px;
     background-color: rgb(216, 216, 216);
 }
@@ -39,7 +40,7 @@ body {
     font-size: 50px;
     font-weight: bolder;
     text-align: center;
-    padding-top: 180px;
+    padding-top: 0px;
     color: rgb(0, 72, 0);
 }
 
@@ -101,4 +102,65 @@ body {
 .style9 {
     font-size: 20px;
     font-weight: bolder;
+}
+
+li {
+    list-style-type: none;
+  }
+  
+#slideShow {
+    width: 300px;
+    height: 180px;
+    position: relative;
+    margin: 50px auto;
+    overflow: hidden;
+}
+
+.slides {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 400px; 
+    transition: 0.5s ease-out;
+} 
+  
+.slides li {
+    margin-left: 10px;
+}
+  
+.slides li:not(:last-child) {
+    float: left;
+    margin-right: 100px;
+}
+  
+.controller span {
+    position: absolute;
+    background-color: transparent;
+    color: black;
+    text-align: center;
+    border-radius: 50%;
+    padding: 10px 20px;
+    top: 50%;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+  
+.controller span:hover {
+    background-color: rgba(128, 128, 128, 0.11);
+}
+
+.prev {
+    left: 10px;
+}
+  
+.prev:hover {
+    transform: translateX(-10px);
+}
+  
+.next {
+    right: 10px;
+}
+  
+.next:hover {
+    transform: translateX(10px);
 }
