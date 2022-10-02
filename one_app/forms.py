@@ -10,7 +10,13 @@ class PostForm(forms.ModelForm):
         super(PostForm, self).__init__(*args, **kwargs)
         self.fields['title'].required = False
 
-class PostEditForm(forms.Models):
+class EditForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['content', 'image']
+        fields = ['title','content','image',]
+
+    def __init__(self, *args, **kwargs):
+        super(EditForm, self).__init__(*args, **kwargs)
+        instance = getattr(self, 'instance', None)
+        if instance and instance.pk:
+            self.fields['content'].widget.attrs['readonly'] = True

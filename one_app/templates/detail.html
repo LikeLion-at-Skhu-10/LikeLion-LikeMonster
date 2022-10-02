@@ -2,11 +2,13 @@
 
 <h1>detail</h1>
 
-<p>제목 : {{detail_form.title}}</p>
-<p>작성 : {{detail_form.created_at}}, 수정 : {{detail_form.updated_at}}</p>
-<p>내용 : {{detail_form.content}}</p>
-{% if detail_form.image %}
-    <img src="{{detail_form.image.url}}"><br>
+<p>제목 : {{post.title}}</p>
+<p>작성 : {{post.created_at}}, 수정 : {{post.updated_at}}</p>
+<p>내용 : {{post.content}}</p>
+{% if post.image %}
+    <img src="{{post.image.url}}" width="200" height="200">
 {% endif %}
-<a href="{% url 'edit' detail_form.id %}">수정</a>
-<a href="{% url 'delete' detail_form.id %}">삭제</a>
+<br>
+<a href="{% url 'edit' post.id %}">수정</a>
+<a href="{% url 'delete' post.id %}">삭제</a> 
+
