@@ -9,3 +9,8 @@ class PostForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)
         self.fields['title'].required = False
+
+class PostEditForm(forms.Models):
+    class Meta:
+        model = Post
+        fields = ['content', 'image']

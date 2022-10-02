@@ -13,6 +13,7 @@ class Post(models.Model):
 
     def clean(self):
         title = self.title
-        if title == "":
+        content = self.content
+        if title == "" or content == "":
             raise ValidationError("글을 작성해주세요")
         return super(Post,self).clean()

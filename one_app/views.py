@@ -31,3 +31,21 @@ def read(request):
 def detail(request, id):
     detail_form = get_object_or_404(Post, id=id)
     return render(request, 'detail.html', {'detail_form':detail_form})
+
+def edit(request, id):
+    edit = get_object_or_404(Post, id=id)
+    if request.method == 'POST':
+        edit_form = PostForm(request.POST, request.FILES, instance=edit_form)
+        if edit_form.is_valid():
+            edit_form.save(commit=False)
+            edit_form.save()
+            return redirect('read')
+    else:
+        edit_form = PostForm(instance=edit)
+        image = edit.image
+        return render(request, 'edit.html', {'edit_form':edit_form, 'image': image})
+
+def delete(request, id):
+    delete_form = get_object_or_404(Post, id=id)
+    delete_form.delete()
+    return redirect('read')
