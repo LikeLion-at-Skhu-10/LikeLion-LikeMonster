@@ -1,0 +1,8 @@
+<p><a href="{% url 'main' %}">메인</a></p>
+
+
+<form method="POST" action="{% url 'login' %}">
+    {% csrf_token %} 
+    {{login_form.as_p}}
+    <button type="submit">로그인</button> 
+</form>

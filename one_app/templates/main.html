@@ -23,8 +23,15 @@
         </div>
         <div class="style0">Python Weekly</div>
         <div class="style1">Welcome to issue 568 of Python Weekly. Let's get straight to the links this week
-            <p><a href="{% url 'write' %}">글쓰기</a></p>
-            <p><a href="{% url 'read' %}">글보기</a></p>
+            
+            {% if user.is_active %} 
+                <p>Hello, {{user}} | <a href="{% url 'mypage' %}">Mypage</a> | <a href="{% url 'logout' %}">Logout</a></p>
+            {% else %} 
+                <p><a href="{% url 'signup' %}">Signup</a> | <a href="{% url 'login' %}">Login</a></p>
+            {% endif %}
+            
+            <p><a href="{% url 'write' %}">Write</a></p>
+            <p><a href="{% url 'read' %}">Read</a></p>
         </div>
         
     </div>

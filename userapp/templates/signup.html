@@ -1,0 +1,8 @@
+<p><a href="{% url 'main' %}">메인</a></p>
+
+
+<form method="POST" action="{% url 'signup' %}" enctype="multipart/form-data">
+    {% csrf_token %} 
+    {{signup_form.as_p}}
+    <button type="submit">가입</button> 
+</form>

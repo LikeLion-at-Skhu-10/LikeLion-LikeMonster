@@ -1,0 +1,10 @@
+<p><a href="{% url 'main' %}">메인</a></p>
+
+
+<form method="POST" action="{% url 'mypage_edit' %}" enctype="multipart/form-data">
+    {% csrf_token %} 
+    <p>이름 : {{user.username}}</p>
+    <img src="{{image.url}}">
+    {{info_change_form.as_p}}
+    <button type="submit">수정</button>
+</form>
