@@ -14,7 +14,7 @@ def write(request):
             write_form = write_form.save(commit=False)
             write_form.created_at = timezone.now()
             write_form.save()
-            return redirect('detail', id)
+            return redirect('detail', write_form.id)
         else:
             context = {
                 'write_form':write_form,

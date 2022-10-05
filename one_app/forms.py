@@ -17,6 +17,8 @@ class EditForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(EditForm, self).__init__(*args, **kwargs)
+        self.fields['title'].required = False
+        
         instance = getattr(self, 'instance', None)
         if instance and instance.pk:
             self.fields['content'].widget.attrs['readonly'] = True
