@@ -2,11 +2,13 @@ from django.shortcuts import render,redirect, get_object_or_404
 from .forms import PostForm, EditForm
 from .models import Post
 from django.utils import timezone
+from userapp.decorators import *
 
 # Create your views here.
 def main(request):
     return render(request, 'main.html')
 
+@login_message_required
 def write(request):
     if request.method == 'POST':
         write_form = PostForm(request.POST, request.FILES)

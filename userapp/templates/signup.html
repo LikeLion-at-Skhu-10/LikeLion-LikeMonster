@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" text="text/css" href="{% static 'css/signup.css' %}">
+    <title>Signup</title>
+</head>
+
+<body>
+    <div class="user-box">
+        <h2>Signup</h2>
+        <form method="POST" action="{% url 'signup' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in signup_form %}
+            {{ field.label }}
+            <input type = "{{ field.field.widget.input_type }}" name="{{ field.name }}">
+            {% endfor %}
+            <button type="submit">가입</button>
+        </form>
+    </div>
+</body>
+</html>
