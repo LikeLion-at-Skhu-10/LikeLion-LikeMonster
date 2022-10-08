@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -21,3 +22,13 @@
     </div>
 </body>
 </html>
+=======
+<p><a href="{% url 'main' %}">메인</a></p>
+
+
+<form method="POST" action="{% url 'signup' %}" enctype="multipart/form-data">
+    {% csrf_token %} 
+    {{signup_form.as_p}}
+    <button type="submit">가입</button> 
+</form>
+>>>>>>> 2be63f1240db0b1da3c3c23e3f3fc76b09ca4147
