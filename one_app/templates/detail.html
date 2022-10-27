@@ -3,6 +3,7 @@
 <h1>detail</h1>
 
 <p>제목 : {{post.title}}</p>
+<p>작성자 : {{post.author}}</p>
 <p>작성 : {{post.created_at}}, 수정 : {{post.updated_at}}</p>
 <p>내용 : {{post.content}}</p>
 {% if post.image %}
@@ -12,3 +13,22 @@
 <a href="{% url 'edit' post.id %}">수정</a>
 <a href="{% url 'delete' post.id %}">삭제</a> 
 
+<br>
+<form method="POST" action="{% url 'detail' post.id %}">
+    {% csrf_token %}
+    {{cmt_form}}
+    <input type="submit" value="submit">
+</form>
+<br>
+{% for cmt in post.cmt.all  %}
+    {% if cmt.author == post.author %}
+        <span style="color: dodgerblue;">작성자</span> : {{cmt.content}}
+    {% else %}
+        {{cmt.author}} : {{cmt.content}}
+    {% endif %}
+    {% if cmt.author == request.user %}
+        <a href="{% url 'cmt_edit' post.id cmt.id %}">수정</a>
+        <a href="{% url 'cmt_delete' cmt.id %}">삭제</a>
+    {% endif %} 
+    <br>
+{% endfor %}

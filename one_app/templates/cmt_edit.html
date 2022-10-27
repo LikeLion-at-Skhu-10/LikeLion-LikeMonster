@@ -1,0 +1,5 @@
+<form method="POST" action="{% url 'cmt_edit' post.id comment.id %}">
+    {% csrf_token %} 
+    {{ form }}
+    <input type="submit" value="수정">
+</form>

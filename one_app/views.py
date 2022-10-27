@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, get_object_or_404
-from .forms import PostForm, EditForm
-from .models import Post
+from .forms import PostForm, PostEditForm, CommentForm
+from .models import Post, Comment
 from django.utils import timezone
 from userapp.decorators import *
 
@@ -14,6 +14,7 @@ def write(request):
         write_form = PostForm(request.POST, request.FILES)
         if write_form.is_valid():
             write_form = write_form.save(commit=False)
+            write_form.author = request.user
             write_form.created_at = timezone.now()
             write_form.save()
             return redirect('detail', write_form.id)
@@ -32,19 +33,31 @@ def read(request):
 
 def detail(request, id):
     post = get_object_or_404(Post, id=id)
-    return render(request, 'detail.html', {'post':post})
+    if request.method == 'POST':
+        cmt_form = CommentForm(request.POST)
+        if cmt_form.is_valid():
+            comment = cmt_form.save(commit=False)
+            comment.post_id = post
+            comment.author = request.user
+            comment.content = cmt_form.cleaned_data['content']
+            comment.save()
+            return redirect('detail', post.id)
+    else:
+        cmt_form = CommentForm()
+        cmts = Comment.objects.filter(post_id=id)
+        return render(request, 'detail.html', {'post':post, 'cmt_form':cmt_form, 'cmts':cmts})
 
 def edit(request, id):
     post = get_object_or_404(Post, id=id)
     if request.method == "POST":
-        edit_form = EditForm(request.POST, request.FILES, instance = post)
+        edit_form = PostEditForm(request.POST, request.FILES, instance = post)
         if edit_form.is_valid():
             post = edit_form.save(commit = False)
             post.updated_at = timezone.now()
             post.save()
             return redirect('detail', id)
     else:
-        edit_form = EditForm(instance = post)
+        edit_form = PostEditForm(instance = post)
         url = post.image.url
         return render(request, 'edit.html', {'edit_form': edit_form, 'url': url})
 
@@ -52,3 +65,19 @@ def delete(request, id):
     post = get_object_or_404(Post, id = id)
     post.delete()
     return redirect('read')
+
+def cmt_edit(request, post_id, cmt_id):
+    post = get_object_or_404(Post, id=post_id)
+    comment = get_object_or_404(Comment, id=cmt_id)
+    form = CommentForm(instance=comment)
+    if request.method == 'POST':
+        edit_form = CommentForm(request.POST, instance=comment)
+        if edit_form.is_valid():
+            edit_form.save()
+            return redirect('detail', post_id)
+    return render(request, 'cmt_edit.html', {'form':form, 'post':post, 'comment':comment})
+
+def cmt_delete(request, id):
+    comment = get_object_or_404(Comment, id=id)
+    comment.delete()
+    return redirect('detail', comment.post_id.id)
