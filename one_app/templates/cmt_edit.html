@@ -1,5 +1,26 @@
-<form method="POST" action="{% url 'cmt_edit' post.id comment.id %}">
-    {% csrf_token %} 
-    {{ form }}
-    <input type="submit" value="수정">
-</form>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cmt_edit.css' %}">
+    <title>cmt_edit</title>
+</head>
+
+<body>
+    <div id="modal-notice" class="modal">
+        <div class="modal-content">
+            <a class="btn-close" id="modal-close" href="{% url 'detail' post.id %}">✖</a>
+            <h1>댓글 수정창</h1>
+                <form method="POST" action="{% url 'cmt_edit' post.id comment.id %}">
+                    {% csrf_token %} 
+                    {{ form }}
+                    <input type="submit" value="수정">
+                </form>
+        </div>
+    </div>
+</body>
+<script src="{% static 'js/cmt_edit.js' %}"></script>
+</html>
+

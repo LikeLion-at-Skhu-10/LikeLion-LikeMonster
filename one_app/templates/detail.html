@@ -14,6 +14,8 @@
 <a href="{% url 'delete' post.id %}">삭제</a> 
 
 <br>
+<br>
+<p> - 댓글 달기 - </p>
 <form method="POST" action="{% url 'detail' post.id %}">
     {% csrf_token %}
     {{cmt_form}}

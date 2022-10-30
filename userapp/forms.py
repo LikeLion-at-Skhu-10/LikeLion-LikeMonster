@@ -5,7 +5,14 @@ from .models import CustomUser
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ['username', 'password1', 'password2', 'user_image']
+        fields = ['username','email','password1', 'password2', 'user_image']
+        labels = {
+            'username': 'Name',
+            'email': 'Email',
+            'password1': 'password',
+            'password2': 'password confirmation',
+            'user_image': 'File'
+        }
 
 class CustomPasswordChangeForm(PasswordChangeForm):
     def __init__(self, *args, **kwargs):
