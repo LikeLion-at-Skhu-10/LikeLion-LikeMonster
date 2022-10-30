@@ -10,4 +10,6 @@ urlpatterns = [
     path('detail/<str:id>/', views.detail, name='detail'),
     path('edit/<str:id>/', views.edit, name = 'edit'),
     path('delete/<str:id>/', views.delete, name='delete'),
+    path('cmt_edit/<str:post_id>/<str:cmt_id>/', views.cmt_edit, name = 'cmt_edit'),
+    path('cmt_delete/<str:id>/', views.cmt_delete, name='cmt_delete'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
