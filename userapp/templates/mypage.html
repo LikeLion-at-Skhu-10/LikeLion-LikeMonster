@@ -2,6 +2,10 @@
 
 
 <p>이름 : {{user.username}}</p>
-<img src="{{image.url}}"><br>
+
+{% if image %}
+    <img src="{{image.url}}"><br>
+{% endif %}
+
 <a href="{% url 'mypage_edit' %}">프로필 이미지 수정</a>
 <a href="{% url 'password_edit' %}">비밀번호 수정</a>
