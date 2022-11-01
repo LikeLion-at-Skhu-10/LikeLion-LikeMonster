@@ -13,7 +13,8 @@ def signup(request):
             auth.login(request, user)
             return redirect('main')
         else:
-            return render(request, 'signup.html', {'signup_form':form})
+            error = '유효 x'
+            return render(request, 'signup.html', {'signup_form':form, 'error':error})
     else:
         form = CustomUserCreationForm()
         return render(request, 'signup.html', {'signup_form':form})

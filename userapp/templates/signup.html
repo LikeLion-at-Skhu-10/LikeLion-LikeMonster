@@ -10,6 +10,9 @@
 <body>
     <div class="user-box">
         <h2>Signup</h2>
+        {% if error %}
+            <p style="color: red;">{{error}}</p>
+        {% endif %}
         <form method="POST" action="{% url 'signup' %}" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in signup_form %}
