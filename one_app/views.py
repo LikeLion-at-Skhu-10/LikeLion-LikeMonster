@@ -81,3 +81,16 @@ def cmt_delete(request, id):
     comment = get_object_or_404(Comment, id=id)
     comment.delete()
     return redirect('detail', comment.post_id.id)
+
+# 좋아요 기능
+def likes(request, id):
+    like_b = get_object_or_404(Post, id = id)
+    if request.user in like_b.post_like.all():
+        like_b.post_like.remove(request.user)
+        like_b.like_count -= 1
+        like_b.save()
+    else:
+        like_b.post_like.add(request.user)
+        like_b.like_count += 1
+        like_b.save()
+    return redirect('detail', like_b.id)
