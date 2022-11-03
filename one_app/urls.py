@@ -12,6 +12,5 @@ urlpatterns = [
     path('delete/<str:id>/', views.delete, name='delete'),
     path('cmt_edit/<str:post_id>/<str:cmt_id>/', views.cmt_edit, name = 'cmt_edit'),
     path('cmt_delete/<str:id>/', views.cmt_delete, name='cmt_delete'),
-    # 좋아요 기능
     path('like/<str:id>/', views.likes, name="likes"), 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

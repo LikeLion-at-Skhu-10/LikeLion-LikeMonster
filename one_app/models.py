@@ -9,7 +9,6 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='images/', blank=True)
-    # 좋아요 기능
     post_like = models.ManyToManyField(CustomUser,related_name='like_users', blank =True)
     like_count = models.PositiveIntegerField(default=0)
 
