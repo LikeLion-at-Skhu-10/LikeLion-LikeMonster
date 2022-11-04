@@ -1,3 +1,17 @@
+@font-face {
+    font-family: 'SBAggroB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HBIOS-SYS';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html,
 body {
     margin: 0;
@@ -42,13 +56,11 @@ body {
     text-align: center;
     padding-top: 0px;
     color: rgb(0, 72, 0);
+    font-family: 'SBAggroB';
 }
 
 .style1 {
     text-align: center;
-    padding-top: 40px;
-    font-size: 18px;
-    font-weight: lighter;
 }
 
 .style2 {
@@ -58,6 +70,8 @@ body {
     text-align: center;
     padding-top: 50px;
     color: rgb(71, 71, 71);
+    font-family: 'SBAggroB';
+
 }
 
 .style3 {
@@ -85,7 +99,7 @@ body {
 }
 
 .style6 {
-    padding-top: 30px;
+    padding-top: 20px;
 }
 
 .style7 {
@@ -121,18 +135,18 @@ li {
     left: 0;
     top: 0;
     width: 400px; 
-    transition: 0.5s ease-out;
+    transition: 0.7s ease-out;
 } 
-  
-.slides li {
-    margin-left: 10px;
-}
-  
+
 .slides li:not(:last-child) {
     float: left;
     margin-right: 100px;
 }
-  
+
+.slides li {
+    float: left;
+}
+
 .controller span {
     position: absolute;
     background-color: transparent;
@@ -163,4 +177,11 @@ li {
   
 .next:hover {
     transform: translateX(10px);
+}
+
+.time {
+    font-family: 'HBIOS-SYS';
+    font-size: 40px;
+    color: black;
+    text-align: center;
 }
