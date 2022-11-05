@@ -1,0 +1,20 @@
+<p><a href="{% url 'main' %}">메인</a></p>
+
+{% if error %}
+    {{error}}
+{% endif %}
+
+{% if user.is_active %}
+    <h1>Add Hashtag</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="생성">
+    </form>
+{% endif %}
+<hr>
+<h2>All</h2>
+{% for tag in tags %}
+    <li><a href="{% url 'tag_post' tag.id %}">#{{tag.name}}</a></li>
+{% endfor %}

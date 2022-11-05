@@ -11,6 +11,8 @@ class Post(models.Model):
     image = models.ImageField(upload_to='images/', blank=True)
     post_like = models.ManyToManyField(CustomUser,related_name='like_users', blank =True)
     like_count = models.PositiveIntegerField(default=0)
+    hashtags = models.ManyToManyField('Hashtag', blank=True)
+
 
     def __str__(self):
         return self.title
@@ -31,3 +33,9 @@ class Comment(models.Model):
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='cmt_author')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+class Hashtag(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name

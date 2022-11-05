@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, get_object_or_404
-from .forms import PostForm, PostEditForm, CommentForm
-from .models import Post, Comment
+from .forms import PostForm, PostEditForm, CommentForm, HashtagForm
+from .models import Post, Comment, Hashtag
 from django.utils import timezone
 from userapp.decorators import *
 
@@ -9,22 +9,23 @@ def main(request):
     return render(request, 'main.html')
 
 @login_message_required
-def write(request):
+def write(request, post= None):
     if request.method == 'POST':
-        write_form = PostForm(request.POST, request.FILES)
+        write_form = PostForm(request.POST, request.FILES, instance=post)
         if write_form.is_valid():
-            write_form = write_form.save(commit=False)
-            write_form.author = request.user
-            write_form.created_at = timezone.now()
-            write_form.save()
-            return redirect('detail', write_form.id)
+            post = write_form.save(commit=False)
+            post.author = request.user
+            post.created_at = timezone.now()
+            post.save()
+            write_form.save_m2m()
+            return redirect('detail', post.id)
         else:
             context = {
                 'write_form':write_form,
             }
             return render(request, 'write.html', context)
     else:
-        write_form = PostForm
+        write_form = PostForm(instance=post)
         return render(request, 'write.html', {'write_form':write_form})
 
 def read(request):
@@ -93,3 +94,26 @@ def likes(request, id):
         like_b.like_count += 1
         like_b.save()
     return redirect('detail', like_b.id)
+
+def hashtag(request, hashtag=None):
+    if request.method == 'POST':
+        form = HashtagForm(request.POST, instance=hashtag)
+        if form.is_valid():
+            hashtag = form.save(commit=False)
+            if Hashtag.objects.filter(name=form.cleaned_data['name']):
+                form = HashtagForm()
+                error = '이미 존재하는 해시태그'
+                return render(request, 'hashtag.html', {'form':form, 'error':error})
+            else:
+                hashtag.name = form.cleaned_data['name']
+                hashtag.save()
+            return redirect('hashtag')
+    else:
+        form = HashtagForm(instance=hashtag)
+        tags = Hashtag.objects.all()
+        return render(request, 'hashtag.html', {'form':form, 'tags':tags})
+
+def tag_post(request, id):
+    posts = Post.objects.filter(hashtags=id)
+    tag = get_object_or_404(Hashtag, id=id)
+    return render(request, 'tag_post.html', {'posts':posts, 'tag':tag})

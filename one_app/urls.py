@@ -13,4 +13,6 @@ urlpatterns = [
     path('cmt_edit/<str:post_id>/<str:cmt_id>/', views.cmt_edit, name = 'cmt_edit'),
     path('cmt_delete/<str:id>/', views.cmt_delete, name='cmt_delete'),
     path('like/<str:id>/', views.likes, name="likes"), 
+    path('hashtag/', views.hashtag, name='hashtag'),
+    path('tag_post/<str:id>/', views.tag_post, name='tag_post'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
