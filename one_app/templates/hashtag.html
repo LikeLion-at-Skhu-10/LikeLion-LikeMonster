@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hashtag</title>
+</head>
+<body>
+<p><a href="{% url 'main' %}">메인</a></p>
+
+<h1>Hashtag</h1>
+
+{{ error_message }}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} 
+    {{form.as_p}}
+    <input type="submit" value="저장">
+</form>
+</body>
+</html>

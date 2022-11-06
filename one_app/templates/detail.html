@@ -18,24 +18,32 @@
 <p>작성자 : {{post.author}}</p>
 <p>작성 : {{post.created_at}}, 수정 : {{post.updated_at}}</p>
 <p>내용 : {{post.content}}</p>
+
+해시태그 : 
+{% for hashtag in post.hashtag.all %}
+    <span>{{hashtag.hashtag_content}}</span>
+{% endfor %}
+<br>
+
 {% if post.image %}
     <img src="{{post.image.url}}" width="200" height="200">
 {% endif %}
+
 <p>현재 글 >
     <a href="{% url 'edit' post.id %}">수정하기</a>
-    <a href="{% url 'delete' post.id %}">삭제하기</a></p>
+    <a href="{% url 'delete' post.id %}">삭제하기</a>
+</p>
 
+<a href="{% url 'likes' post.id %}">
 <div class="heart-box">
 <div class="heart">
-    <p class="like"><a href="{% url 'likes' post.id %}">
-        {% if customuser in post.like.all %}
-        {% else %}
-        {{ post.like_count }}
-        {% endif %}
-    </a></p>
+    <p class="like"></p>
 </div>
 <div class="animation-heart"></div>
 </div>
+</a>
+<br><br>
+{{ post.like_count }} 
 
 <br>
 <br>
