@@ -14,4 +14,5 @@ urlpatterns = [
     path('cmt_delete/<int:id>', views.cmt_delete, name='cmt_delete'),
     path('like/<int:id>/', views.likes, name="likes"),
     path('hashtag/', views.hashtag, name="hashtag"), 
+    path('search/', views.search, name='search'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

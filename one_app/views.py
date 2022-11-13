@@ -32,6 +32,13 @@ def write(request, post = None):
 
 def read(request):
     read_forms = Post.objects.all()
+
+    sort = request.GET.get('sort','')
+    if sort == 'date':
+        read_forms = Post.objects.all().order_by('-created_at')
+    elif sort == 'like':
+        read_forms = Post.objects.all().order_by('-like_count')
+
     q = request.GET.get('q', '')
     if q:
         read_forms = read_forms.filter(Q(hashtag__hashtag_content__icontains=q))
@@ -118,3 +125,14 @@ def hashtag(request, hashtag = None):
     else:
         form = HashtagForm(instance = hashtag)
         return render(request, 'hashtag.html', {'form': form})
+
+def search(request):
+    posts = Post.objects.all()
+    search = request.GET.get('search', '')
+    if search:
+        posts = posts.filter(
+            Q(title__icontains = search)|Q(content__icontains = search)
+        ).distinct()
+        return render(request, 'search.html', {'posts':posts, 'search':search})
+    else:
+        return render(request, 'search.html')

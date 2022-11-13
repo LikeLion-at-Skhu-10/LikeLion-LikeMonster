@@ -69,3 +69,5 @@ window.onload = function() {
   setClock();
   setInterval(setClock,1000);
 }
+
+const setTheme = theme => document.documentElement.className = theme;
