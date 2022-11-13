@@ -1,10 +1,10 @@
 from django import forms
 from .models import Post, Comment, Hashtag
- 
+
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title','content','image','hashtags']
+        fields = ['title','content', 'image', 'hashtag']
 
     def __init__(self, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)
@@ -13,7 +13,7 @@ class PostForm(forms.ModelForm):
 class PostEditForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title','content','image','hashtags']
+        fields = ['title','content','image', 'hashtag']
 
     def __init__(self, *args, **kwargs):
         super(PostEditForm, self).__init__(*args, **kwargs)
@@ -30,5 +30,5 @@ class CommentForm(forms.ModelForm):
 
 class HashtagForm(forms.ModelForm):
     class Meta:
-        model = Hashtag 
-        fields = ['name']
+        model = Hashtag
+        fields = ['hashtag_content']

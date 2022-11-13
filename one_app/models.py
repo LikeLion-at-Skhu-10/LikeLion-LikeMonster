@@ -9,10 +9,13 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='images/', blank=True)
-    post_like = models.ManyToManyField(CustomUser,related_name='like_users', blank =True)
-    like_count = models.PositiveIntegerField(default=0)
-    hashtags = models.ManyToManyField('Hashtag', blank=True)
 
+    # 좋아요 
+    like = models.ManyToManyField(CustomUser,related_name='likes', blank =True)
+    like_count = models.PositiveIntegerField(default=0)
+
+    # 해시태그
+    hashtag = models.ManyToManyField('Hashtag', blank=True)
 
     def __str__(self):
         return self.title
@@ -34,8 +37,9 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+
 class Hashtag(models.Model):
-    name = models.CharField(max_length=50)
+    hashtag_content = models.CharField(max_length = 30, default="#")
 
     def __str__(self):
-        return self.name
+        return self.hashtag_content

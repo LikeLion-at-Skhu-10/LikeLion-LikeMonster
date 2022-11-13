@@ -1,20 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hashtag</title>
+</head>
+<body>
 <p><a href="{% url 'main' %}">메인</a></p>
 
-{% if error %}
-    {{error}}
-{% endif %}
+<h1>Hashtag</h1>
 
-{% if user.is_active %}
-    <h1>Add Hashtag</h1>
-
-    <form method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="생성">
-    </form>
-{% endif %}
-<hr>
-<h2>All</h2>
-{% for tag in tags %}
-    <li><a href="{% url 'tag_post' tag.id %}">#{{tag.name}}</a></li>
-{% endfor %}
+{{ error_message }}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} 
+    {{form.as_p}}
+    <input type="submit" value="저장">
+</form>
+</body>
+</html>

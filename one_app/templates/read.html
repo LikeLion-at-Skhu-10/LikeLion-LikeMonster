@@ -9,6 +9,11 @@
 
 <h1>read</h1>
 
+<form class="sea" action="" method="GET">
+    <input type="text" name="q" value="{{ q }}"/>
+    <input type="submit" value="검색" />
+</form>
+<hr>
 {% for read_form in read_forms %}
     <a href="{% url 'detail' read_form.id %}">{{read_form.title}}</a><br>
     {% if read_form.image %}
