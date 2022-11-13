@@ -1,7 +1,0 @@
-<h1><span style="color:pink">#{{tag}}</span> 게시글</h1>
-
-{% for post in posts %}
-    <a href="{% url 'detail' post.id %}">{{post.title}}</a><br>
-    <img src="{{post.image.url}}" width="30%"><br>
-
-{% endfor %}

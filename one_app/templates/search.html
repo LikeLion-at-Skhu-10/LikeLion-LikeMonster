@@ -4,5 +4,10 @@
 {% else %}
     {% for post in posts %}
         <h2><a href="{% url 'detail' post.id %}">{{post.title}}</a></h2>
+        <p>{{post.created_at}} || {{post.updated_at}}</p>
+        <p>❤{{post.like_count}}</p>
+        {% if post.image %}
+            <img src="{{post.image.url}}" width="30%"><br>
+        {% endif %}
     {% endfor %}
 {% endif %}

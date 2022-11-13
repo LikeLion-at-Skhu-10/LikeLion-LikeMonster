@@ -124,7 +124,8 @@ def hashtag(request, hashtag = None):
             return redirect('read')
     else:
         form = HashtagForm(instance = hashtag)
-        return render(request, 'hashtag.html', {'form': form})
+        tags = Hashtag.objects.all()
+        return render(request, 'hashtag.html', {'form': form, 'tags':tags})
 
 def search(request):
     posts = Post.objects.all()
