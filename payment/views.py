@@ -37,6 +37,7 @@ def success(request):
             "resorderId":resorderId,
         }
     )
+    
 
 def fail(request):
     code = request.GET.get('code')
