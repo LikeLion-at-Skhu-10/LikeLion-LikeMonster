@@ -5,19 +5,43 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{% static 'css/read.css' %}">
     <title>Read</title>
+    <script src="https://js.tosspayments.com/v1"></script>
 </head>
 <body>
     <img class="walk" id="hideimg" img src="{% static 'img/Walk.gif' %}">
         <div id="mainbody">
             <p><a href="{% url 'main' %}">메인</a></p>
+<a href="{% url 'window' %}">결제창</a>
             <h1>Community</h1>
-                {% for read_form in read_forms %}
-                <a href="{% url 'detail' read_form.id %}">{{read_form.title}}</a><br>
-                {% if read_form.image %}
-                    <img src="{{read_form.image.url}}" width = "100px" height="100px">
+<!-- 제목, 내용 검색 -->
+<form method="GET" action="{% url 'search' %}">
+    <input type="text" name="search" value="{{search}}">
+    <input type="submit" value="제목, 내용 검색">
+</form>
+
+<!-- 해시태그 검색 -->
+<form class="sea" action="" method="GET">
+    <input type="text" name="q" value="{{ q }}"/>
+    <input type="submit" value="해시태그 검색" />
+</form>
+                <br>
+<form method="GET">
+    <select name="sort">
+        <option value="date">최신순</option>
+        <option value="like">좋아요</option>
+    </select>
+    <button type="submit">정렬</button>
+</form>
+{% for post in read_forms.all %}
+                <h2><a href="{% url 'detail' post.id %}">{{post.title}}</a></h2>
+                <p>{{post.created_at}} || {{post.updated_at}}</p>
+    <p>❤{{post.like_count}}</p>
+    {% if post.image %}
+                    <img src="{{post.image.url}}" width = "100px" height="100px">
                 {% endif %}
-                <hr>
-            {% endfor %}
+                        {% endfor %}
+<hr> 
+
         </div>
 </body>
 <script src="{% static 'js/read.js' %}"></script>

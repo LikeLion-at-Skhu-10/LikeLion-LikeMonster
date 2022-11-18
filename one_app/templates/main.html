@@ -32,12 +32,15 @@
             <div class="style1">
             {% if user.is_active %} 
                 <p>Hello, {{user}} | <a href="{% url 'mypage' %}">Mypage</a> | <a href="{% url 'logout' %}">Logout</a></p>
+                <p><a href="{% url 'hashtag' %}">Hashtag</a></p>
             {% else %} 
                 <p><a href="{% url 'signup' %}">Signup</a> | <a href="{% url 'login' %}">Login</a></p>
+                <p><a href="{% url 'hashtag' %}">Hashtag</a></p>
             {% endif %}
             
             <p><a href="{% url 'write' %}">Write</a></p>
             <p><a href="{% url 'read' %}">Read</a></p>
+            <p><a href="{% url 'hashtag' %}">Hashtag</a></p>
             </div>
         </div>
         
