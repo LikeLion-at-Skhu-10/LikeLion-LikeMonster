@@ -1,5 +1,5 @@
 from django.shortcuts import render
-import requests, json, base64
+import requests, json, base64 #pip install requests
 
 # Create your views here.
 def window(request):
