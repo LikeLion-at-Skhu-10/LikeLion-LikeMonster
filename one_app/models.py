@@ -9,6 +9,8 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='images/', blank=True)
+    post_like = models.ManyToManyField(CustomUser,related_name='like_users', blank =True)
+    like_count = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title

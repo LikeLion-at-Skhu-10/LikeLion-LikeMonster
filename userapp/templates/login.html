@@ -1,8 +1,22 @@
-<p><a href="{% url 'main' %}">메인</a></p>
+{% load static %}
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" text="text/css" href="{% static 'css/login.css' %}">
+    <title>Signin</title>
+</head>
+<body>
+    <div class="user-box">
+        <p><a href="{% url 'main' %}">Main</a></p>
+        <h2>Login</h2>
 
-<form method="POST" action="{% url 'login' %}">
-    {% csrf_token %} 
-    {{login_form.as_p}}
-    <button type="submit">로그인</button> 
-</form>
+            <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %} 
+            {{login_form.as_p}}
+        <button type="submit">로그인</button> 
+    </form>
+</div>
+</body>
+</html>

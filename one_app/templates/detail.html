@@ -1,6 +1,19 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block css %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+    <title>datail</title>
+    {% endblock css %}
+</head>
+
+<body>
 <p><a href="{% url 'main' %}">메인</a></p>
 
-<h1>detail</h1>
+<h1>글 쓰기</h1>
 
 <p>제목 : {{post.title}}</p>
 <p>작성자 : {{post.author}}</p>
@@ -9,17 +22,29 @@
 {% if post.image %}
     <img src="{{post.image.url}}" width="200" height="200">
 {% endif %}
-<br>
-<a href="{% url 'edit' post.id %}">수정</a>
-<a href="{% url 'delete' post.id %}">삭제</a> 
+<p>현재 글 >
+    <a href="{% url 'edit' post.id %}">수정하기</a>
+    <a href="{% url 'delete' post.id %}">삭제하기</a></p>
+
+<div class="heart-box">
+<div class="heart">
+    <p class="like"><a href="{% url 'likes' post.id %}">
+        {% if customuser in post.like.all %}
+        {% else %}
+        {{ post.like_count }}
+        {% endif %}
+    </a></p>
+</div>
+<div class="animation-heart"></div>
+</div>
 
 <br>
 <br>
-<p> - 댓글 달기 - </p>
-<form method="POST" action="{% url 'detail' post.id %}">
-    {% csrf_token %}
-    {{cmt_form}}
-    <input type="submit" value="submit">
+<p>• 댓글을 남겨보세요 •</p>
+        <form method="POST" action="{% url 'detail' post.id %}">
+            {% csrf_token %}
+            {{cmt_form}}
+        <input type="submit" value="submit">
 </form>
 <br>
 {% for cmt in post.cmt.all  %}
@@ -34,3 +59,6 @@
     {% endif %} 
     <br>
 {% endfor %}
+<script src="{% static 'js/datail.js' %}"></script>
+</body>
+</html>

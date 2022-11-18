@@ -9,6 +9,13 @@
 </head>
 <body>
     <div class="header">
+        <!--toggle 이용해서 테마 바꾸기-->
+        <div class="toggle-container">
+            <button class="theme-btn dark" onclick="setTheme('dark')" title="Darkmode">
+            <img src="https://assets.codepen.io/210284/moon.png"></button>
+            <button class="theme-btn light" onclick="setTheme('light')" title="Lightmode">
+            <img src="https://assets.codepen.io/210284/sun.png"></button>
+        </div>
         <div id="slideShow">
             <ul class="slides">
                 <li><img src="/static/img/html.png" alt="" width="310" height="150"></li>
@@ -19,11 +26,10 @@
                 <span class="prev">&lang;</span>
                 <span class="next">&rang;</span>
             </p>
-            <script src="{% static 'js/main.js'%}"></script>
         </div>
         <div class="style0">Python Weekly</div>
-        <div class="style1">Welcome to issue 568 of Python Weekly. Let's get straight to the links this week
-            
+        <div id="time" class="time"></div>
+            <div class="style1">
             {% if user.is_active %} 
                 <p>Hello, {{user}} | <a href="{% url 'mypage' %}">Mypage</a> | <a href="{% url 'logout' %}">Logout</a></p>
             {% else %} 
@@ -32,6 +38,7 @@
             
             <p><a href="{% url 'write' %}">Write</a></p>
             <p><a href="{% url 'read' %}">Read</a></p>
+            </div>
         </div>
         
     </div>
@@ -69,4 +76,5 @@
         </div>
     </div>
 </body>
+<script src="{% static 'js/main.js' %}"></script>
 </html>
