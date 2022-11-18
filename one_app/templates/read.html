@@ -1,20 +1,24 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/read.css' %}">
+    <title>Read</title>
 </head>
 <body>
-<p><a href="{% url 'main' %}">메인</a></p>
-
-<h1>read</h1>
-
-{% for read_form in read_forms %}
-    <a href="{% url 'detail' read_form.id %}">{{read_form.title}}</a><br>
-    {% if read_form.image %}
-        <img src="{{read_form.image.url}}" width = "100px" height="100px">
-    {% endif %}
-    <hr>
-{% endfor %}
+    <img class="walk" id="hideimg" img src="{% static 'img/Walk.gif' %}">
+        <div id="mainbody">
+            <p><a href="{% url 'main' %}">메인</a></p>
+            <h1>Community</h1>
+                {% for read_form in read_forms %}
+                <a href="{% url 'detail' read_form.id %}">{{read_form.title}}</a><br>
+                {% if read_form.image %}
+                    <img src="{{read_form.image.url}}" width = "100px" height="100px">
+                {% endif %}
+                <hr>
+            {% endfor %}
+        </div>
 </body>
+<script src="{% static 'js/read.js' %}"></script>
 </html>
